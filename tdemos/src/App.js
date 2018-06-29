@@ -64,7 +64,7 @@ class App extends Component
   componentDidMount()
   {
 	  console.log(this)
-	  this.timerID = setInterval(() => this.changeProgress() , 1000);
+	  this.timerID = setInterval(() => this.changeProgress() , 100);
   }
   
   componentWillUnmount()
@@ -84,9 +84,13 @@ class App extends Component
   
   changeProgress()
   {
-	  console.log("here ")
+	  let position = Math.floor(Math.random() * this.state.list.length); 
 	  const newList = this.state.list.slice()
-	  newList[0].progress = newList[0].progress + 1
+	  newList[position].progress = newList[position].progress + Math.floor(Math.random() * 5)
+	  
+	  if(newList[position].progress > 100 ) 
+		  newList[position].progress =100;
+	  
 	  this.setState({ list : newList })  
   }
 }
