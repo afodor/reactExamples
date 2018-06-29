@@ -25,39 +25,7 @@ class App extends Component
 				  }  
 				 ]
 				,
-				list : [
-			              {
-			              	node: "Node 1",
-			              	jobName : "RDP 1",
-			              	progress : 20,
-			              	id : 1
-			              },
-			              {
-			            	  node: "Node 2",
-			                	jobName : "RDP 2",
-			                	progress : 3,
-			                	id : 2
-			                }
-			              ,
-			              {
-			            	  node: "Node 3",
-			                	jobName : "RDP 3",
-			                	progress : 20,
-			                	id : 3
-			                },
-			                {
-			              	  node: "Node 4",
-			                  	jobName : "RDP 4",
-			                  	progress : 20,
-			                  	id : 4
-			                  },
-			                  {
-			                	  node: "Node 4",
-			                    	jobName : "RDP 4",
-			                    	progress : 20,
-			                    	id : 5
-			                    }
-			              ]
+				list : this.makeList(100)
 		}
 	}
 	
@@ -72,7 +40,28 @@ class App extends Component
 	  clearInterval(this.timerID);
   }
 
-
+  makeList( aLength ) 
+  {
+	  let aList = []
+	  
+	  for( let i=0; i < aLength; i++)
+	  {
+		  let aName = i.toString()
+		  
+		  if(aName.length == 1)
+			  aName = "0" + aName;
+		  
+		  aList[i] =  {
+              	  node: "Node " + aName,
+                	jobName : "RDP " + aName,
+                	progress : 0,
+                	id :i
+                }
+	  }
+	  
+	  return aList;
+  }
+  
   render() 
     {
       return(
@@ -84,7 +73,7 @@ class App extends Component
   
   changeProgress()
   {
-	  let position = Math.floor(Math.random() * this.state.list.length); 
+	  const position = Math.floor(Math.random() * this.state.list.length); 
 	  const newList = this.state.list.slice()
 	  newList[position].progress = newList[position].progress + Math.floor(Math.random() * 5)
 	  
