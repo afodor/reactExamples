@@ -1,14 +1,11 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 import 'react-table/react-table.css'
 import ReactTable from "react-table";
 
-
 class App extends Component 
 {
-
 	constructor(props)
 	{
 		super(props);
@@ -63,10 +60,21 @@ class App extends Component
 			              ]
 		}
 		
+		this.changeProgress = this.changeProgress(this);
 	}
+	
+  componentDidMount()
+  {
+	  console.log(this)
+	 // this.timerID = setInterval(() => this.changeProgress() , 1000);
+  }
+  
+  componentWillUnmount()
+  {
+	  //clearInterval(this.timerID);
+  }
 
-	
-	
+
   render() 
     {
       return(
@@ -75,6 +83,14 @@ class App extends Component
       columns={this.state.columns}
      />)
   } 
+  
+  changeProgress()
+  {
+	  console.log("here ")
+	  const newList = this.state.list.slice()
+	  newList[0].progress = newList[0].progress + 1
+	  this.setState({ list : newList })  
+  }
 }
 
 export default App;
