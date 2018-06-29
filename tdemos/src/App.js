@@ -59,19 +59,17 @@ class App extends Component
 			                    }
 			              ]
 		}
-		
-		this.changeProgress = this.changeProgress(this);
 	}
 	
   componentDidMount()
   {
 	  console.log(this)
-	 // this.timerID = setInterval(() => this.changeProgress() , 1000);
+	  this.timerID = setInterval(() => this.changeProgress() , 1000);
   }
   
   componentWillUnmount()
   {
-	  //clearInterval(this.timerID);
+	  clearInterval(this.timerID);
   }
 
 
