@@ -12,6 +12,7 @@ class App extends Component
 		
 		this.state = 
 		{
+				aStatus : 'init',
 				jobID: null,
 				result1: null,
 		
@@ -66,14 +67,21 @@ class App extends Component
 	launchSimOnServer() 
 	{
 		console.log("got button click")
+		this.setState( { aStatus: "launching"})
 	}
   
   render() 
     {
-    	if( this.state.result1 == null)
+    	if( this.state.aStatus== "init")
     	{
     		return (<div><h1>Biolock J simulation</h1><button onClick={this.launchSimOnServer}>Click to launch</button></div> )
     	}
+    	
+    	if( this.state.aStatus= "launching")
+    	{
+    		return (<div><h1>Launching</h1></div> )
+    	}
+    		
     
       return(
       <ReactTable 
