@@ -63,13 +63,18 @@ class App extends Component
   {
   }
 
+	setStateID( id ) 
+	{
+		console.log(id)
+		this.setState( { jobID : id })
+	}
 
 	launchSimOnServer() 
 	{
 		console.log("got button click")
 		this.setState( { aStatus: "launching"})
 		
-		fetch("http://localhost:8080/ServletExamples/servlets/servlet/KickOffBiolockJSim").then( response => response.json()).then(response => console.log(response.jobID))
+		fetch("http://localhost:8080/ServletExamples/servlets/servlet/KickOffBiolockJSim").then( response => response.json()).then(response => this.setStateID(response.jobID))
 	}
   
   render() 
@@ -81,7 +86,7 @@ class App extends Component
     	
     	if( this.state.aStatus=== "launching")
     	{
-    		return (<div><h1>Launching</h1></div> )
+    		return (<div><h1>Launching </h1></div> )
     	}
     		
     
