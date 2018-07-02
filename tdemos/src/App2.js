@@ -50,6 +50,8 @@ class App extends Component
 				      }
 				 ]
 		}
+		
+		this.launchSimOnServer = this.launchSimOnServer.bind(this)
 	}
 	
   componentDidMount()
@@ -60,12 +62,17 @@ class App extends Component
   {
   }
 
+
+	launchSimOnServer() 
+	{
+		console.log("got button click")
+	}
   
   render() 
     {
     	if( this.state.result1 == null)
     	{
-    		return (<div><h1>Biolock J simulation</h1><button>Click to launch</button></div> )
+    		return (<div><h1>Biolock J simulation</h1><button onClick={this.launchSimOnServer}>Click to launch</button></div> )
     	}
     
       return(
