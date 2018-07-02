@@ -86,7 +86,7 @@ class App extends Component
     	
     	if( this.state.aStatus=== "launching")
     	{
-    		return (<div><h1>Launching </h1></div> )
+    		return (<div><h1>Launching  {this.state.jobID} </h1></div> )
     	}
     		
     
