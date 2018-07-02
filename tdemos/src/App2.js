@@ -68,16 +68,18 @@ class App extends Component
 	{
 		console.log("got button click")
 		this.setState( { aStatus: "launching"})
+		
+		fetch("http://localhost:8080/ServletExamples/servlets/servlet/KickOffBiolockJSim").then( response => console.log( response.json().jobID) )
 	}
   
   render() 
     {
-    	if( this.state.aStatus== "init")
+    	if( this.state.aStatus=== "init")
     	{
     		return (<div><h1>Biolock J simulation</h1><button onClick={this.launchSimOnServer}>Click to launch</button></div> )
     	}
     	
-    	if( this.state.aStatus= "launching")
+    	if( this.state.aStatus=== "launching")
     	{
     		return (<div><h1>Launching</h1></div> )
     	}
