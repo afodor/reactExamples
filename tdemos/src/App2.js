@@ -69,6 +69,11 @@ class App extends Component
 		this.setState( { jobID : id })
 		setInterval(() => this.updateProgress() , 1000);
 	}
+	
+	setNewList(aList)
+	{
+		this.setState( { aStatus: "running", list : aList } )
+	}
 
 	launchSimOnServer() 
 	{
@@ -82,7 +87,8 @@ class App extends Component
 	{
 		let aUrl = "http://127.0.0.1:8080/ServletExamples/servlets/servlet/GetStatusReport?JOB_ID=" + this.state.jobID
 		console.log(aUrl)
-		
+		fetch(aUrl).then( response => response.json()).then(response => this.setNewList(response.NodeStats))
+
 	}
   
   render() 
