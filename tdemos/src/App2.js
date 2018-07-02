@@ -69,7 +69,7 @@ class App extends Component
 		console.log("got button click")
 		this.setState( { aStatus: "launching"})
 		
-		fetch("http://localhost:8080/ServletExamples/servlets/servlet/KickOffBiolockJSim").then( response => console.log( response.json().jobID) )
+		fetch("http://localhost:8080/ServletExamples/servlets/servlet/KickOffBiolockJSim").then( response => response.json()).then(response => console.log(response.jobID))
 	}
   
   render() 
