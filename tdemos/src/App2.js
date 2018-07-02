@@ -67,6 +67,7 @@ class App extends Component
 	{
 		console.log(id)
 		this.setState( { jobID : id })
+		setInterval(() => this.updateProgress() , 1000);
 	}
 
 	launchSimOnServer() 
@@ -75,6 +76,13 @@ class App extends Component
 		this.setState( { aStatus: "launching"})
 		
 		fetch("http://localhost:8080/ServletExamples/servlets/servlet/KickOffBiolockJSim").then( response => response.json()).then(response => this.setStateID(response.jobID))
+	}
+	
+	updateProgress()
+	{
+		let aUrl = "http://127.0.0.1:8080/ServletExamples/servlets/servlet/GetStatusReport?JOB_ID=" + this.state.jobID
+		console.log(aUrl)
+		
 	}
   
   render() 
